@@ -37,7 +37,7 @@ class ChoosePlayerActivity : AppCompatActivity(), UserListAdapter.ItemClickListe
         setContentView(binding.root)
 
         val firebaseDatabase = FirebaseDatabase.getInstance()
-        databaseReference = firebaseDatabase.reference.child("menele") // Zmień na odpowiednią ścieżkę w swojej bazie danych
+        databaseReference = firebaseDatabase.reference.child("wyniki")
 
         val newUser = findViewById<TextView>(R.id.add_new)
 

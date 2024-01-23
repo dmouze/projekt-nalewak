@@ -188,7 +188,7 @@ class TimerActivity : AppCompatActivity() {
     }
 
     private fun saveResultToRealtimeDatabase(userId: String, formattedTime: Double) {
-        val databaseReference = FirebaseDatabase.getInstance().getReference("menele")
+        val databaseReference = FirebaseDatabase.getInstance().getReference("wyniki")
         val userReference = databaseReference.child(userId)
 
         if (formattedTime > 0.0) {

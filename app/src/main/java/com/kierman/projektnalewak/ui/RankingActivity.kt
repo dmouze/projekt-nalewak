@@ -45,7 +45,7 @@ class RankingActivity : AppCompatActivity(), UserListAdapter.ItemClickListener,
 
         val firebaseDatabase = FirebaseDatabase.getInstance()
         databaseReference =
-            firebaseDatabase.reference.child("menele") // Zmień na odpowiednią ścieżkę w swojej bazie danych
+            firebaseDatabase.reference.child("wyniki")
 
         val userList = mutableListOf<UserModel>()
         adapter = UserListAdapter(userList, this,this)

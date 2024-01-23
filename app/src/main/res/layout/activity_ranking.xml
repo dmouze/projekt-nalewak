@@ -42,7 +42,7 @@
                 android:shadowDx="1.5"
                 android:shadowDy="4"
                 android:shadowRadius="1.6"
-                android:text="WYBIERZ WOJOWNIKA"
+                android:text="WYBIERZ UŻYTKOWNIKA"
                 android:textColor="@color/black"
                 android:textSize="40sp"
                 app:layout_constraintEnd_toEndOf="parent"

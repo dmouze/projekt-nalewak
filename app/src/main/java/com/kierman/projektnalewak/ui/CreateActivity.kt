@@ -23,7 +23,7 @@ class CreateActivity : AppCompatActivity() {
     private lateinit var imie: EditText
     private lateinit var przycisk: Button
 
-    private val databaseReference: DatabaseReference = FirebaseDatabase.getInstance().getReference("menele")
+    private val databaseReference: DatabaseReference = FirebaseDatabase.getInstance().getReference("wyniki")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
