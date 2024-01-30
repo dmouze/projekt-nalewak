@@ -1,9 +1,7 @@
-@file:Suppress("DEPRECATION")
-
 package com.kierman.projektnalewak.ui
-
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.location.Geocoder
 import android.os.Bundle
 import android.view.View
 import android.view.Window
@@ -12,17 +10,20 @@ import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.gms.maps.model.LatLng
 import com.google.firebase.database.*
-import com.kierman.projektnalewak.util.UserModel
+import com.kierman.projektnalewak.R
 import com.kierman.projektnalewak.databinding.ActivityChoosePlayerBinding
 import com.kierman.projektnalewak.util.UserListAdapter
-import com.kierman.projektnalewak.R
+import com.kierman.projektnalewak.util.UserModel
+import java.util.Locale
 
 class ChoosePlayerActivity : AppCompatActivity(), UserListAdapter.ItemClickListener, UserListAdapter.ItemLongClickListener {
 
     private lateinit var binding: ActivityChoosePlayerBinding
     private lateinit var adapter: UserListAdapter
     private lateinit var databaseReference: DatabaseReference
+    private lateinit var geocoder: Geocoder
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,6 +39,7 @@ class ChoosePlayerActivity : AppCompatActivity(), UserListAdapter.ItemClickListe
 
         val firebaseDatabase = FirebaseDatabase.getInstance()
         databaseReference = firebaseDatabase.reference.child("wyniki")
+        geocoder = Geocoder(this, Locale.getDefault()) // Inicjalizacja obiektu Geocoder
 
         val newUser = findViewById<TextView>(R.id.add_new)
 
@@ -60,9 +62,10 @@ class ChoosePlayerActivity : AppCompatActivity(), UserListAdapter.ItemClickListe
                 for (userSnapshot in snapshot.children) {
                     val id = userSnapshot.key // Pobierz ID użytkownika
                     val name = userSnapshot.child("imie").getValue(String::class.java) // Pobierz imię użytkownika
-                    val czasMap = userSnapshot.child("czas").getValue(object : GenericTypeIndicator<HashMap<String, Double>>() {})
-                    val timeList = ArrayList(czasMap?.values ?: emptyList())
-                    val user = UserModel(id, name, timeList) // Tworzenie UserModel z ID, imieniem i czasami
+                    val latitude = userSnapshot.child("latitude").getValue(Double::class.java) ?: 0.0 // Pobierz szerokość geograficzną
+                    val longitude = userSnapshot.child("longitude").getValue(Double::class.java) ?: 0.0 // Pobierz długość geograficzną
+                    val cityName = getCityName(LatLng(latitude, longitude)) // Pobierz nazwę miasta na podstawie współrzędnych
+                    val user = UserModel(id, "$name - $cityName") // Tworzenie UserModel z ID i nazwą użytkownika wraz z miastem
                     userList.add(user)
                 }
                 adapter.notifyDataSetChanged()
@@ -73,10 +76,16 @@ class ChoosePlayerActivity : AppCompatActivity(), UserListAdapter.ItemClickListe
         })
     }
 
+    // Metoda do pobierania nazwy miasta na podstawie współrzędnych geograficznych
+    private fun getCityName(latLng: LatLng): String {
+        val addresses = geocoder.getFromLocation(latLng.latitude, latLng.longitude, 1)
+        return addresses?.firstOrNull()?.locality ?: "" // Zwróć nazwę miasta lub pustą wartość, jeśli nie znaleziono miasta
+    }
+
     override fun onItemClick(user: UserModel) {
         val id = user.id
+        val imie = user.name!!.split(" - ")[0] // Pobierz tylko imię użytkownika
         val results = user.time
-        val imie = user.name
         val resultArray: ArrayList<Double> = ArrayList(results)
         val intent = Intent(this, TimerActivity::class.java)
         intent.putExtra("user_name", imie)

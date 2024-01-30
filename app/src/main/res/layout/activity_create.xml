@@ -51,7 +51,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_add_menel"
+            android:id="@+id/btn_add_user"
             android:layout_width="180dp"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
@@ -69,7 +69,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imie_menela"
+            app:layout_constraintTop_toBottomOf="@+id/user_name"
             app:layout_constraintVertical_bias="0.52"
             tools:ignore="SpeakableTextPresentCheck" />
 
@@ -87,7 +87,7 @@
             tools:visibility="visible" />
 
         <EditText
-            android:id="@+id/imie_menela"
+            android:id="@+id/user_name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
