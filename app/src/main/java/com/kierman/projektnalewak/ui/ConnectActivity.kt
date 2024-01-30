@@ -52,7 +52,7 @@ class ConnectActivity : AppCompatActivity() {
         binding.viewModel = viewModel
 
         val arrow = findViewById<ImageView>(R.id.arrow)
-        arrow.visibility = View.VISIBLE
+        arrow.visibility = View.INVISIBLE
         arrow.setOnClickListener {
             val intent = Intent(this, ChoosePlayerActivity::class.java)
             startActivity(intent)
@@ -120,7 +120,7 @@ class ConnectActivity : AppCompatActivity() {
                     val intent = Intent(this, ChoosePlayerActivity::class.java)
                     startActivity(intent)
                     val arrow = findViewById<ImageView>(R.id.arrow)
-                    arrow.visibility = View.INVISIBLE
+                    arrow.visibility = View.VISIBLE
                 } else {
                     sendConnectionLostBroadcast()
                     viewModel.setInProgress(false)
