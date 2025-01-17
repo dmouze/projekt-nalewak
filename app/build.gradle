@@ -59,24 +59,23 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 
     // Koin
-    implementation "org.koin:koin-android:$koin_version"
-    implementation "org.koin:koin-androidx-scope:$koin_version"
-    implementation "org.koin:koin-androidx-viewmodel:$koin_version"
+    implementation("io.insert-koin:koin-android:$koin_version")
 
     // ViewModel
     implementation "androidx.lifecycle:lifecycle-extensions:2.2.0"
-    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.7"
 
     // for new API replaced startActivityForResult
-    implementation 'androidx.fragment:fragment-ktx:1.7.0-alpha03'
+    implementation 'androidx.fragment:fragment-ktx:1.8.5'
 
     // GIFs
     implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.27'
 
     // Firebase
-    implementation platform('com.google.firebase:firebase-bom:32.2.3')
-    implementation 'com.google.firebase:firebase-storage-ktx:20.2.1'
-    implementation 'com.google.firebase:firebase-firestore-ktx:24.7.1'
+    implementation platform('com.google.firebase:firebase-bom:33.7.0')
+    implementation 'com.google.firebase:firebase-storage-ktx:21.0.1'
+    implementation("com.google.firebase:firebase-analytics")
+    implementation 'com.google.firebase:firebase-firestore-ktx:25.1.1'
     implementation 'com.firebaseui:firebase-ui-database:8.0.2'
     implementation 'com.firebaseui:firebase-ui-firestore:8.0.2'
     implementation 'com.firebaseui:firebase-ui-auth:8.0.2'

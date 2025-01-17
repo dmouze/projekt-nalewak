@@ -3,12 +3,12 @@
     "project_number": "73340622105",
     "firebase_url": "https://lufanalezaco-default-rtdb.europe-west1.firebasedatabase.app",
     "project_id": "lufanalezaco",
-    "storage_bucket": "lufanalezaco.appspot.com"
+    "storage_bucket": "lufanalezaco.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:73340622105:android:4ac2d13be8ebc5f84fe188",
+        "mobilesdk_app_id": "1:73340622105:android:836f17782eed4bdd4fe188",
         "android_client_info": {
           "package_name": "com.kierman.projektnalewak"
         }
