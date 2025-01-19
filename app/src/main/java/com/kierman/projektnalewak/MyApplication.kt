@@ -2,6 +2,7 @@ package com.kierman.projektnalewak
 
 import android.app.Application
 import android.content.Context
+import androidx.lifecycle.ViewModel
 import com.kierman.projektnalewak.di.repositoryModule
 import com.kierman.projektnalewak.di.viewModelModule
 import org.koin.android.ext.koin.androidContext
@@ -11,6 +12,8 @@ import org.koin.core.context.startKoin
 import org.koin.core.logger.Level
 
 class MyApplication : Application() {
+
+
 
     init {
         instance = this

@@ -5,9 +5,13 @@
 
     <data>
         <import type="android.view.View" />
+        <import type="androidx.appcompat.app.AppCompatActivity"/>
         <variable
             name="viewModel"
             type="com.kierman.projektnalewak.viewmodel.NalewakViewModel" />
+        <variable
+            name="activity"
+            type="androidx.appcompat.app.AppCompatActivity" />
     </data>
 
 
@@ -33,7 +37,7 @@
             android:layout_gravity="end"
 
             android:background="@drawable/button_back"
-            android:onClick="@{()->viewModel.onClickConnect()}"
+            android:onClick="@{() -> viewModel.onClickConnect(activity)}"
             android:paddingStart="10dp"
             android:paddingEnd="10dp"
             android:text="@{viewModel.btnConnected?@string/disconnect:@string/connect}"

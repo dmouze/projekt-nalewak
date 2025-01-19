@@ -1,5 +1,6 @@
 package com.kierman.projektnalewak.viewmodel
 
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.ObservableBoolean
 import androidx.databinding.ObservableField
 import androidx.lifecycle.LiveData
@@ -39,27 +40,24 @@ class NalewakViewModel(private val repository: Repository): ViewModel() {
         repository.inProgress.value = Event(en)
     }
 
-    fun onClickConnect(){
-        if(connected.value==false || connected.value == null){
+    fun onClickConnect(activity: AppCompatActivity) {
+        if (connected.value == false || connected.value == null) {
             if (repository.isBluetoothSupport()) {
-                if(repository.isBluetoothEnabled()){
-                    //Pasek postępu
+                if (repository.isBluetoothEnabled()) {
                     setInProgress(true)
-                    //Rozpoczęcie skanowania urządzeń
-                    repository.scanDevice()
-                }else{
-                    // Jeśli Bluetooth jest obsługiwany, ale nie jest włączony
-                    // Wywołanie prośby o włączenie Bluetooth
+                    repository.scanDevice(activity) // 🔹 Przekazanie activity
+                } else {
                     _requestBleOn.value = Event(true)
                 }
-            }
-            else{
+            } else {
                 Util.showNotification("Bluetooth nie jest obsługiwany.")
             }
-        }else{
+        } else {
             repository.disconnect()
         }
     }
+
+
 
     fun unregisterReceiver(){
         repository.unregisterReceiver()

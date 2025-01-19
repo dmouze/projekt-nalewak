@@ -50,6 +50,7 @@ class ConnectActivity : AppCompatActivity() {
         )
 
         binding.viewModel = viewModel
+        binding.activity = this
 
         val arrow = findViewById<ImageView>(R.id.arrow)
         arrow.visibility = View.INVISIBLE
@@ -79,7 +80,7 @@ class ConnectActivity : AppCompatActivity() {
     private val startForResult =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
             if (result.resultCode == Activity.RESULT_OK) {
-                viewModel.onClickConnect()
+                viewModel.onClickConnect(this@ConnectActivity)
             }
         }
 
